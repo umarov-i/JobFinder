@@ -6,6 +6,7 @@
 #include "Date.h"
 
 class JobApplication {
+private:
     int applicationId;
     int jobId;
     string jobSeekerUsername;

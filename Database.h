@@ -8,30 +8,17 @@
 #include "Job.h"
 #include "JobApplication.h"
 
-// Singleton pattern for Database
+// Simplified Database class (no singleton pattern)
 class Database {
+private:
     vector<JobSeeker> jobSeekers;
     vector<Employer> employers;
     vector<Job> jobs;
     vector<JobApplication> applications;
 
-    static Database* instance;
-
-    // Private constructor for singleton
-    Database() {}
-
-    // Prevent copying
-    Database(const Database&) = delete;
-    Database& operator=(const Database&) = delete;
-
 public:
-    // Get singleton instance
-    static Database* getInstance() {
-        if (instance == nullptr) {
-            instance = new Database();
-        }
-        return instance;
-    }
+    // Default constructor
+    Database() {}
 
     void addJobSeeker(const JobSeeker& jobSeeker) {
         jobSeekers.push_back(jobSeeker);
@@ -103,13 +90,16 @@ public:
         return result;
     }
 
-    ~Database() {
-        // Clean up singleton instance
-        delete instance;
+    // Update application status
+    bool updateApplicationStatus(int applicationId, ApplicationStatus newStatus) {
+        for (auto& app : applications) {
+            if (app.getApplicationId() == applicationId) {
+                app.setStatus(newStatus);
+                return true;
+            }
+        }
+        return false;
     }
 };
-
-// Initialize static member
-Database* Database::instance = nullptr;
 
 #endif // DATABASE_H

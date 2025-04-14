@@ -5,6 +5,7 @@
 #include "JobStatus.h"
 
 class Job {
+private:
     int jobId;
     string title;
     string description;
