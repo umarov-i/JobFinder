@@ -7,7 +7,6 @@
 #include <iostream>
 
 class Employer : public User {
-private:
     string companyName;
     string industry;
     string companyDescription;

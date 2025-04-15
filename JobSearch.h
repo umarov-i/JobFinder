@@ -6,7 +6,6 @@
 #include <string>
 #include "Job.h"
 
-// Simplified search class for jobs
 class JobSearch {
 public:
     // Filter jobs by location

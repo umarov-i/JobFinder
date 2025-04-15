@@ -50,8 +50,18 @@ int main() {
     js1.displayProfile();
 
     // Demonstrate authenticate
-    cout << "Authentication (correct): " << (js1.authenticate("john_doe", "password") ? "Success" : "Failed") << "\n";
-    cout << "Authentication (incorrect): " << (js1.authenticate("john_doe", "wrong") ? "Success" : "Failed") << "\n";
+    cout << "Authentication (correct): ";
+    if (js1.authenticate("john_doe", "password")) {
+        cout << "Success\n";
+    } else {
+        cout << "Failed\n";
+    }
+    cout << "Authentication (incorrect): ";
+    if (js1.authenticate("john_doe", "wrong")) {
+        cout << "Success\n";
+    } else {
+        cout << "Failed\n";
+    }
 
     // Add to database
     db.addJobSeeker(js1);

@@ -8,9 +8,7 @@
 #include "Job.h"
 #include "JobApplication.h"
 
-// Simplified Database class (no singleton pattern)
 class Database {
-private:
     vector<JobSeeker> jobSeekers;
     vector<Employer> employers;
     vector<Job> jobs;
@@ -37,31 +35,28 @@ public:
     }
 
     JobSeeker* findJobSeeker(const string& username) {
-        auto it = find_if(jobSeekers.begin(), jobSeekers.end(),
-                              [&username](const JobSeeker& js) { return js.getUsername() == username; });
-
-        if (it != jobSeekers.end()) {
-            return &(*it);
+        for (int i = 0; i < jobSeekers.size(); i++) {
+            if (jobSeekers[i].getUsername() == username) {
+                return &jobSeekers[i];
+            }
         }
         return nullptr;
     }
 
     Employer* findEmployer(const string& username) {
-        auto it = find_if(employers.begin(), employers.end(),
-                              [&username](const Employer& emp) { return emp.getUsername() == username; });
-
-        if (it != employers.end()) {
-            return &(*it);
+        for (int i = 0; i < employers.size(); i++) {
+            if (employers[i].getUsername() == username) {
+                return &employers[i];
+            }
         }
         return nullptr;
     }
 
     Job* findJob(int jobId) {
-        auto it = find_if(jobs.begin(), jobs.end(),
-                              [jobId](const Job& job) { return job.getJobId() == jobId; });
-
-        if (it != jobs.end()) {
-            return &(*it);
+        for (int i = 0; i < jobs.size(); i++) {
+            if (jobs[i].getJobId() == jobId) {
+                return &jobs[i];
+            }
         }
         return nullptr;
     }
@@ -72,7 +67,7 @@ public:
 
     vector<JobApplication> getApplicationsForJob(int jobId) {
         vector<JobApplication> result;
-        for (const auto& app : applications) {
+        for ( auto& app : applications) {
             if (app.getJobId() == jobId) {
                 result.push_back(app);
             }

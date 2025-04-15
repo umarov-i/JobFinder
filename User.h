@@ -23,7 +23,7 @@ public:
     string getContactInfo() const { return contactInfo; }
     void setContactInfo(string contactInfo) { this->contactInfo = contactInfo; }
 
-    // Pure virtual function (abstract method)
+    // Pure virtual function (Polymoprhism)
     virtual void displayProfile() const = 0;
 
     // Virtual function
